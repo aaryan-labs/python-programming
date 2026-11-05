@@ -4,6 +4,9 @@
 pyproject.toml
 uv.lock
 
+# Skip docs folder
+docs/
+
 # Python
 __pycache__/
 *.py[cod]
