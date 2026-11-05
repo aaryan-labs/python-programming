@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+
+# IDE configuration
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# MkDocs generated website
+site/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
