@@ -1,19 +1,34 @@
-# Python virtual environment
+# UV
+# UV
 .venv/
+pyproject.toml
+uv.lock
 
-# IDE configuration
-.idea/
-
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
 
-# MkDocs generated website
-site/
+# Jupyter
+.ipynb_checkpoints/
 
-# Operating system files
-.DS_Store
-Thumbs.db
+# PyCharm
+.idea/
 
-# Temporary files
+# VS Code
+.vscode/
+
+# Environment files
+.env
+.env.*
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs
 *.log
+
+# OS files
+Thumbs.db
+.DS_Store
