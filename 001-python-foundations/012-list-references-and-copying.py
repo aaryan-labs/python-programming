@@ -54,6 +54,8 @@ print("Review queue:", review_queue)
 
 assert transactions == [1000, 2000, 3000, 4000]
 assert transactions is review_queue
+# assert is a debugging/testing statement in Python.
+# It checks whether a condition is True.
 
 
 # ============================================================
@@ -226,7 +228,9 @@ assert len(review_batch) == 6
 """
 Before running these examples, predict their outputs.
 
+-----------
 EXERCISE 1:
+-----------
 
 p = [10, 20]
 q = p
@@ -239,7 +243,9 @@ print(p)
 print(q)
 print(r)
 
+-----------
 EXERCISE 2:
+-----------
 
 a = [1, 2, 3]
 b = a
@@ -250,7 +256,9 @@ print(a)
 print(b)
 print(a is b)
 
+-----------
 EXERCISE 3:
+-----------
 
 x = 100
 y = x
@@ -260,7 +268,9 @@ y += 50
 print(x)
 print(y)
 
+-----------
 EXERCISE 4:
+-----------
 
 a = [1, 2, 3]
 b = a.copy()
