@@ -20,7 +20,6 @@ Run:
 
 import copy
 
-
 # ============================================================
 # SECTION 1: NESTED DATA STRUCTURES
 # ============================================================
@@ -419,8 +418,9 @@ assert review_batch[1]["customer"]["risk"] == "MANUAL_CHECK"
 # ============================================================
 
 """
+-----------
 EXERCISE 1:
-
+-----------
 a = [{"amount": 100}, {"amount": 200}]
 b = a.copy()
 
@@ -431,9 +431,9 @@ print(b)
 
 Why does the original change?
 
-
+-----------
 EXERCISE 2:
-
+-----------
 a = [{"amount": 100}, {"amount": 200}]
 b = copy.deepcopy(a)
 
@@ -444,9 +444,9 @@ print(b)
 
 Why is the behaviour different?
 
-
+-----------
 EXERCISE 3:
-
+-----------
 a = [{"amount": 100}, {"amount": 200}]
 
 b = [x for x in a if x["amount"] >= 100]
@@ -457,9 +457,13 @@ print(a)
 
 Predict the output.
 
+NOTE:
+* A new collection does not necessarily mean new objects.
+* This applies to list comprehensions, filtering, sorting, slicing and many other Python operations.
 
+-----------
 EXERCISE 4:
-
+-----------
 a = [{"amount": 100, "metadata": {"channel": "UPI"}}]
 
 b = [dict(x) for x in a]
@@ -544,3 +548,74 @@ Consider memory usage, performance and whether independent nested objects are ne
 """
 
 print("\n--- ALL AUTOMATED CHECKS PASSED ---")
+
+# ============================================================
+# PYTHON COPYING: QUICK REFERENCE
+# ============================================================
+#
+# 1. ASSIGNMENT
+#    new = original
+#
+#    - No new object is created.
+#    - Both variables reference the SAME object.
+#    - Mutations through either variable affect the same object.
+#
+# 2. SHALLOW COPY
+#    new = original.copy()
+#    new = copy.copy(original)
+#
+#    - Creates a NEW outer object.
+#    - Nested objects are still SHARED.
+#    - Mutating the outer collection is independent.
+#    - Mutating a shared nested mutable object affects both.
+#
+# 3. DEEP COPY
+#    new = copy.deepcopy(original)
+#
+#    - Creates a NEW outer object.
+#    - Recursively copies nested objects.
+#    - Nested mutable objects are independent.
+#    - Changes to copied mutable objects do not affect original.
+#
+# ============================================================
+# COMPARISON TABLE
+# ============================================================
+#
+# Feature                 Assignment    Shallow Copy    Deep Copy
+# ------------------------------------------------------------
+# New outer object?       No            Yes             Yes
+# Inner lists shared?     Yes           Yes             No*
+# Inner dictionaries
+# shared?                 Yes           Yes             No*
+# Outer mutation shared?  Yes           No              No
+# Inner mutation shared?  Yes           Yes             No*
+# Copy depth              None          One level       Recursive
+#
+# * Deep copy recursively copies nested objects, but immutable
+#   objects may be reused. Custom objects may define their own
+#   copying behaviour.
+#
+# ============================================================
+# IMPORTANT DISTINCTIONS
+# ============================================================
+#
+# is   -> Checks object identity (same object?)
+# ==   -> Checks value equality (equivalent values?)
+#
+# Shallow copy:
+# - Independent outer collection.
+# - Shared references to nested objects.
+#
+# Deep copy:
+# - Independent mutable object graph in typical use.
+# - Can be more expensive in memory and execution time.
+#
+# ENGINEERING RULE:
+# Choose copying behaviour based on data ownership and
+# mutation requirements. Do not deep-copy everything by default.
+#
+# SUMMARY:
+# Assignment shares the object.
+# Shallow copy shares nested objects.
+# Deep copy recursively copies nested structures
+# ============================================================
