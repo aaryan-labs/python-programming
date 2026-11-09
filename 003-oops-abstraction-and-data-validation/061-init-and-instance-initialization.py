@@ -243,7 +243,7 @@ print(Payment.transactions)
 
 """
 Predict every output BEFORE running each exercise. Explain WHY.
-
+-----------------------------------------
 EXERCISE 1 — Separate instance attributes
 -----------------------------------------
 class Account:
@@ -258,7 +258,7 @@ a1.balance += 500
 print(a1.balance)
 print(a2.balance)
 
-
+----------------------------------------------
 EXERCISE 2 — Class attribute lookup and update
 ----------------------------------------------
 class Account:
@@ -269,13 +269,16 @@ class Account:
 
 a1 = Account("A001")
 a2 = Account("A002")
+
 print(a1.account_type)
 print(a2.account_type)
+
 Account.account_type = "CURRENT"
+
 print(a1.account_type)
 print(a2.account_type)
 
-
+-------------------------------
 EXERCISE 3 — Instance shadowing
 -------------------------------
 class Account:
@@ -292,7 +295,7 @@ print(a1.account_type)
 print(a2.account_type)
 print(Account.account_type)
 
-
+-------------------------------------------
 EXERCISE 4 — Shared mutable class attribute
 -------------------------------------------
 class Account:
@@ -309,7 +312,7 @@ print(a1.notes)
 print(a2.notes)
 print(Account.notes)
 
-
+----------------------------------------------------
 EXERCISE 5 — Independent mutable instance attributes
 ----------------------------------------------------
 class Account:
