@@ -1,0 +1,3 @@
+Employee(employee_id=101, name='John', department='Data')
+Employee(employee_id=102, name='Peter', department='Data')
+Employee(employee_id=103, name='Rob', department='Data')
