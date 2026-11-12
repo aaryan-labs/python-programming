@@ -89,7 +89,6 @@ for payment in payments:
 # The class defines one method implementation. Each call supplies a
 # different instance as self, so the method operates on that instance.
 
-
 # ============================================================
 # SECTION 4: EXPLICIT METHOD CALL
 # ============================================================
@@ -198,7 +197,7 @@ class Customer:
         self.name = name
     def greet(self):
         print("Hello", self.name)
-c1 = Customer("Asha")
+c1 = Customer("Ayesha")
 c2 = Customer("Ravi")
 c1.greet()
 c2.greet()

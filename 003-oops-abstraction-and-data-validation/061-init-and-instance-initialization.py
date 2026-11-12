@@ -1,5 +1,5 @@
 """
-PYTHON ENGINEERING — MODULE 03
+PYTHON ENGINEERING — MODULE 003
 TOPIC: __init__, OBJECT INITIALISATION AND INSTANCE STATE
 
 Run:
@@ -52,10 +52,9 @@ print(payment_1.payment_id, payment_1.amount)
 print(payment_2.payment_id, payment_2.amount)
 
 # When Payment(...) is called, Python creates an instance and calls
-# __init__ to initialise it.
-# Technically, __new__ creates/returns the instance; __init__ initialises it.
+# __init__ to initialize it.
+# Technically, __new__ creates/returns the instance; __init__ initializes it.
 # In normal application code, you generally define __init__, not __new__.
-
 
 # ============================================================
 # SECTION 3: EACH INSTANCE GETS ITS OWN STATE
