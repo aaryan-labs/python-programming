@@ -99,7 +99,6 @@ class Payment:
             f"₹{self.amount:,.2f} ({self.status})"
         )
 
-
 payment = Payment("TXN002", 2500, "SETTLED")
 
 # print(payment) asks Python for the object's readable string.
@@ -160,7 +159,6 @@ class Payment:
             f"amount={self.amount!r}, "
             f"status={self.status!r})"
         )
-
 
 payment = Payment("TXN003", 3750, "PENDING")
 
@@ -411,8 +409,9 @@ print(payment.to_dict())
 
 print("\n--- SECTION 8: COMMON MISTAKES AND SECURITY ---")
 
+# ----------------------------------------
 # MISTAKE 1: PRINTING INSTEAD OF RETURNING
-#
+# ----------------------------------------
 # Incorrect implementation:
 #
 #     def __str__(self):
@@ -427,14 +426,14 @@ print("\n--- SECTION 8: COMMON MISTAKES AND SECURITY ---")
 #
 #     def __str__(self):
 #         return self.payment_id
-#
+# ----------------------------------------
 # MISTAKE 2: RETURNING A NON-STRING VALUE
-#
+# ----------------------------------------
 # Both __str__ and __repr__ must return a str object.
 # Returning an integer, list, dictionary or None is not valid.
-#
+# -------------------------------------------------
 # MISTAKE 3: EXPOSING SENSITIVE PAYMENT INFORMATION
-#
+# -------------------------------------------------
 # Representations may appear in:
 #     - logs
 #     - tracebacks
