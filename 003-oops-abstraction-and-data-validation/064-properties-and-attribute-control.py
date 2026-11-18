@@ -341,7 +341,7 @@ valid_payment = Payment("TXN003", 1250)
 print("Validated amount:", valid_payment.amount)
 
 # The constructor also uses the setter.
-# Therefore invalid initial values are rejected as well.
+# Therefore, invalid initial values are rejected as well.
 #
 # Run these separately to observe the exceptions:
 #
