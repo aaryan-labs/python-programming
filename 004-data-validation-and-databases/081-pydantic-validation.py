@@ -16,7 +16,7 @@ import unittest
 
 from pydantic import BaseModel, Field, ValidationError
 
-
+# ------------------
 # 1. WHY CHECK DATA?
 # ------------------
 # A dictionary accepts values without enforcing our application's rules.
@@ -27,7 +27,7 @@ raw_customer = {
 }
 print("\n1. Ordinary dictionary:", raw_customer)
 
-
+# ------------------
 # 2. FIRST MODEL
 # --------------
 class Customer(BaseModel):
@@ -50,7 +50,7 @@ print("customer_id type:", type(customer.customer_id).__name__)
 # Python permits that assignment. Pydantic uses model field types as rules
 # when creating or validating a model.
 
-
+# ----------------
 # 3. INVALID INPUT
 # ----------------
 print("\n3. Invalid input:")
@@ -64,7 +64,7 @@ except ValidationError as error:
     print("Pydantic rejected the input:")
     print(error)
 
-
+# ----------------------------------
 # 4. FIELD RESTRICTIONS AND DEFAULTS
 # ---------------------------------
 class CustomerRecord(BaseModel):
@@ -92,7 +92,7 @@ print("Supplied city overrides default:", mumbai_customer.city)
 # gt=0 means greater than zero; ge=0 means greater than or equal to zero.
 # Try customer_id=0 and name="" to see the restrictions reject the values.
 
-
+# -----------------------------------------
 # 5. OPTIONAL FIELDS AND RESTRICTED CHOICES
 # ----------------------------------------
 class Order(BaseModel):
@@ -124,7 +124,7 @@ except ValidationError as error:
     print("Invalid status rejected:")
     print(error)
 
-
+# ----------------------
 # 6. DICTIONARY TO MODEL
 # ----------------------
 raw_order = {
@@ -137,7 +137,7 @@ order_from_dict = Order.model_validate(raw_order)
 print("\n6. Dictionary validated:", order_from_dict)
 # model_validate() is built into Pydantic's BaseModel. It accepts a dictionary.
 
-
+# ---------------------
 # 7. JSON TEXT TO MODEL
 # ---------------------
 order_json = """{
@@ -151,9 +151,9 @@ order_from_json = Order.model_validate_json(order_json)
 print("\n7. JSON validated:", order_from_json)
 # model_validate_json() accepts JSON text.
 
-
+# -----------------------------------
 # 8. MODEL TO DICTIONARY OR JSON TEXT
-# ----------------------------------
+# -----------------------------------
 payment_order = Order(
     order_id=505,
     customer_id=101,
@@ -165,7 +165,7 @@ print("JSON text:", payment_order.model_dump_json())
 # model_dump() returns a Python dictionary.
 # model_dump_json() returns JSON text.
 
-
+# ----------------
 # 9. NESTED MODELS
 # ----------------
 class Address(BaseModel):
@@ -195,7 +195,7 @@ employee = Employee.model_validate(employee_data)
 print("\n9. Nested employee:", employee)
 print("Employee city:", employee.address.city)
 
-
+# ----------------------------------
 # 10. AI-GENERATED STRUCTURED OUTPUT
 # ----------------------------------
 class SupportTicketResult(BaseModel):
@@ -209,11 +209,12 @@ ai_response = """{
     "confidence": "High",
     "reason": "The transaction pattern differs from usual activity."
 }"""
+
 ticket = SupportTicketResult.model_validate_json(ai_response)
 print("\n10. Checked AI output:", ticket)
 # This checks format and permitted values, not whether the AI conclusion is true.
 
-
+# ---------------------------
 # 11. BANKING PAYMENT EXAMPLE
 # ---------------------------
 class Payment(BaseModel):
@@ -239,7 +240,7 @@ accepted_payment = accept_payment_data(incoming_payment)
 print("\n11. Accepted payment:", accepted_payment)
 print("Payment ID type:", type(accepted_payment.payment_id).__name__)
 
-
+# -----------------
 # 12. FOCUSED TESTS
 # -----------------
 class TestPaymentValidation(unittest.TestCase):
@@ -277,7 +278,7 @@ class TestPaymentValidation(unittest.TestCase):
         restored = Payment.model_validate_json(original.model_dump_json())
         self.assertEqual(restored, original)
 
-
+# -----------------------------------------------------
 # 13. INDEPENDENT PRACTICE — TRY BEFORE LOOKING UP HELP
 # -----------------------------------------------------
 # TASK A: Create Product with product_id (positive integer), name (non-empty

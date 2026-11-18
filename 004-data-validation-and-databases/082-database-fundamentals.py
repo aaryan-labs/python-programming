@@ -13,7 +13,7 @@ read this file. PostgreSQL execution with psycopg is covered in 004.03.
 
 # 1. RELATIONAL DATABASES
 #
-# A relational database organises information into tables.
+# A relational database organizes information into tables.
 # Rows represent records; columns represent attributes.
 #
 # Related entities are stored separately and connected through keys.
