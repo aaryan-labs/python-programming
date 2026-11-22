@@ -3,8 +3,8 @@ MODULE 005 — ASYNC PYTHON & CONCURRENCY
 PHASE I | REVISION FILE 005.01
 Topic: Why async? | Execution models | Coroutines | await | asyncio.run()
 
-This is a revision and practice file. Read it on mobile; run the examples and
-complete the exercises when using a laptop.
+This is a revision and practice file. Run the examples and
+complete the exercises.
 
 Run as a script:
     python 005-01-async-foundations.py
@@ -15,11 +15,15 @@ Python: 3.10+
 1. FOUR EXECUTION CONCEPTS
 =======================================================================
 
-SEQUENTIAL
+-------------
+a. SEQUENTIAL
+-------------
 One operation completes before the next begins:
     A finishes -> B starts -> B finishes -> C starts
 
-CONCURRENT
+-------------
+b. CONCURRENT
+-------------
 Multiple tasks are in progress during overlapping periods. For I/O:
     start A -> A waits
               start B -> B waits
@@ -27,14 +31,22 @@ Multiple tasks are in progress during overlapping periods. For I/O:
 Their waiting periods overlap. Concurrency does not necessarily mean that
 Python instructions execute at exactly the same instant.
 
-PARALLEL
+-----------
+c. PARALLEL
+-----------
 Two or more operations execute at the same instant, for example on separate
 CPU cores. Multiprocessing can enable CPU-bound Python work to run in parallel.
 
-SYNCHRONOUS VS ASYNCHRONOUS
-Synchronous code generally waits for an operation to finish before proceeding.
-Asynchronous code can suspend while awaiting an operation and allow other
-eligible tasks to make progress.
+------------------------------
+d. SYNCHRONOUS VS ASYNCHRONOUS
+------------------------------
+- Synchronous code: Python waits for one operation to finish before moving to the next.
+- Asynchronous code: Python can work on something else while waiting for an operation to finish.
+
+Example:
+Imagine Python is fetching customer data from an API. The API takes 3 seconds to respond.
+- In synchronous code, Python waits for those 3 seconds before doing anything else.
+- In asynchronous code, Python can use those 3 seconds to work on another task instead of just waiting.
 
 These describe related but different dimensions:
 - sequential/concurrent: whether work overlaps in time
@@ -85,6 +97,7 @@ def demonstrate_sequential_execution() -> None:
     print("Results:", results)
     print(f"Sequential elapsed time: {elapsed:.2f}s")
 
+demonstrate_sequential_execution()
 
 """
 Expected reasoning: A completes before B starts; B completes before C starts.
@@ -94,6 +107,9 @@ Elapsed time is approximately the sum of delays (about 1.5 seconds).
 3. WHAT IS A COROUTINE?
 =======================================================================
 
+------------------------
+Normal vs Async Function
+------------------------
 Normal function:
     def fetch_data():
         return "data"
@@ -107,7 +123,9 @@ Asynchronous function:
 Calling fetch_data() creates a COROUTINE OBJECT. It does not immediately run
 the body to completion.
 
+------------
 Terminology:
+------------
 - coroutine function: function defined with async def
 - coroutine object: awaitable work created by calling that function
 - Task: asyncio object that schedules and manages a coroutine's execution
@@ -119,10 +137,11 @@ Task. A coroutine can be awaited directly.
 4. WHAT DOES await DO?
 =======================================================================
 
-await means:
-"I need this asynchronous operation to complete before this coroutine
-continues. If it must wait, suspend this coroutine and let the event loop run
-other eligible tasks."
+await means: "Wait for this task to finish before moving to the next line."
+A simpler version:
+await tells Python to wait for an asynchronous operation to finish. If that 
+operation is still running, Python can pause the current coroutine and allow 
+other tasks to run.
 
 await does NOT automatically create a separate Task.
 
@@ -165,6 +184,7 @@ asyncio.run():
 - creates/manages an event loop for this top-level coroutine
 - runs it until completion
 - closes the event loop afterwards
+
 
 Do not normally call asyncio.run() inside an already-running event loop,
 as in many notebook environments. Use the notebook's existing async support.
